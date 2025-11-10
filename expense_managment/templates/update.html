@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Expense</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #add8e6;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        form {
+            background-color: #222;
+            padding: 20px;
+            border-radius: 10px;
+            width: 50%;
+            margin: auto;
+            margin-top: 50px;
+            box-shadow: 0 0 10px rgba(173, 216, 230, 0.5);
+            animation: slideIn 0.8s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #555;
+            background-color: #333;
+            color: white;
+            transition: all 0.3s ease-in-out;
+        }
+
+        input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.7);
+            outline: none;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Update Expense</h2>
+    
+    <form method="POST">
+        {% csrf_token %}
+        <label>Item Name:</label>
+        <input type="text" name="item" value="{{ expense.item }}" required>
+
+        <label>Price:</label>
+        <input type="number" name="price" value="{{ expense.price }}" required>
+
+        <label>Day:</label>
+        <input type="number" name="day" value="{{ expense.day }}" required>
+
+        <label>Month:</label>
+        <input type="text" name="month" value="{{ expense.month }}" required>
+
+        <label>Year:</label>
+        <input type="number" name="year" value="{{ expense.year }}" required>
+
+        <button type="submit">Update Expense</button>
+    </form>
+
+</body>
+</html>

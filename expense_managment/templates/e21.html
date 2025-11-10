@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Year & Month</title>
+    <style>
+        /* Dark Theme Styling */
+        body {
+            background-color: #000; /* Black background */
+            color: #add8e6; /* Light blue text */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: #121212; /* Dark navbar */
+            padding: 15px;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: #add8e6;
+            text-decoration: none;
+            padding: 14px 20px;
+            font-size: 18px;
+            display: inline-block;
+        }
+
+        .navbar a:hover {
+            color: #87ceeb; /* Lighter blue on hover */
+        }
+
+        /* Success Message */
+        .success-message {
+            background-color: #1a1a1a; /* Darker background */
+            color: #b3d9ff; /* Soft blue text */
+            padding: 20px;
+            margin: 30px auto;
+            width: 80%;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7); /* Soft shadow */
+            text-align: center; /* Center text */
+            font-size: 18px;
+            border: 1px solid #333;
+            animation: fadeInScale 1s ease-in-out; /* Apply animation */
+        }
+
+        /* Form Styling */
+        .form-container {
+            text-align: center;
+            margin-top: 50px;
+            animation: fadeInScale 1.2s ease-in-out; /* Apply animation */
+        }
+
+        select, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            transition: transform 0.3s ease-in-out;
+            text-align: center;
+        }
+
+        select {
+            background-color: #222;
+            color: #add8e6;
+        }
+
+        select:focus, button:focus {
+            transform: scale(1.1);
+        }
+
+        button {
+            background-color: #004b80; /* Darker blue */
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #003366; /* Even darker on hover */
+        }
+
+        /* Animations */
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="/home1">Home</a>
+        <a href="/e21">Expense</a>
+        <a href="/search1">Search</a>
+        <a href="/history1">History</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <!-- Success Message -->
+    <div class="success-message">
+        <h2>Hello - {{username}}'s family member</h2>
+        <p>First enter your current month and year.</p>
+    </div>
+
+    <!-- Form Section -->
+    <div class="form-container">
+        <h2>Enter current year and month</h2>
+        <form method="post" action="{% url 'set_year_month1' %}">
+            {% csrf_token %}
+            <label for="year">Year:</label>
+            <select id="year" name="year">
+                <option>Select a year</option>
+                <option>2020</option>
+                <option>2021</option>
+                <option>2022</option>
+                <option>2023</option>
+                <option>2024</option>
+                <option>2025</option>
+            </select>
+        
+            <br>
+        
+            <label for="month">Month:</label>
+            <select id="month" name="month">
+                <option>Select a month</option>
+                <option>January</option>
+                <option>February</option>
+                <option>March</option>
+                <option>April</option>
+                <option>May</option>
+                <option>June</option>
+                <option>July</option>
+                <option>August</option>
+                <option>September</option>
+                <option>October</option>
+                <option>November</option>
+                <option>December</option>
+            </select>
+        
+            <br>
+        
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+</body>
+</html>

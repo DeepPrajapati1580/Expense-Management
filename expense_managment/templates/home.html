@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Management System</title>
+    <style>
+        /* Dark Theme Styling */
+        body {
+            background-color: #000; /* Black background */
+            color: #add8e6; /* Light blue text */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: #121212;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: #add8e6;
+            text-decoration: none;
+            padding: 14px 20px;
+            font-size: 18px;
+            display: inline-block;
+        }
+
+        .navbar a:hover {
+            color: #87ceeb;
+        }
+
+        /* Main Container Fade-in */
+        .container {
+            background-color: #1e1e1e;
+            padding: 20px;
+            margin: 50px auto;
+            width: 80%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(173, 216, 230, 0.5);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Text Animation */
+        .text-line {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="/home">Home</a>
+        <a href="/e2">Expense</a>
+        <a href="/search">Search</a>
+        <a href="/add">Add Expense</a>
+        <a href="/history">History</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Welcome to {{username}}</h1>
+        <p class="text-line">Hey, how are you doing? Welcome to the Expense Management System. You are logged in as <strong>{{username}}</strong>. Aww yeah, you successfully read this important alert message.</p>
+        <hr>
+        <p class="text-line">This is the home page. First, you enter the current year and months by <a href="/add">using this link</a>.</p>
+        <p class="text-line">Here, the expense section shows this month, this year, and total expenses.</p>
+        <p class="text-line">You can search your expenses according to the day, month, and year.</p>
+        <p class="text-line">You can add your expenses and also track them using the history section. You can also update and delete your expenses.</p>
+        <p class="text-line">Whenever you need to, be sure to logout <a href="/logout">using this link</a>.</p>
+    </div>
+
+    <script>
+        // Display text line by line with 0.8s delay
+        document.addEventListener("DOMContentLoaded", function () {
+            const lines = document.querySelectorAll('.text-line');
+            lines.forEach((line, index) => {
+                setTimeout(() => {
+                    line.style.opacity = "1";
+                    line.style.transform = "translateY(0)";
+                }, 800 * (index + 1)); // 0.8s delay per line
+            });
+        });
+    </script>
+
+</body>
+</html>

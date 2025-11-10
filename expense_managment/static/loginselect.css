@@ -1,0 +1,146 @@
+  /* General Styles */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(45deg, #121212, #333); /* Gradient background */
+    background-size: 400% 400%;
+    animation: gradientAnimation 8s ease infinite; /* Animation for background */
+    color: #ffffff; /* White text */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Gradient Animation */
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.signup-container {
+    background-color: rgba(31, 31, 31, 0.8); /* Dark semi-transparent container */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    box-sizing: border-box;
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards; /* Animation for fade-in effect */
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+h2 {
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 20px;
+    animation: slideIn 1s ease-in-out forwards;
+}
+
+@keyframes slideIn {
+    0% { transform: translateY(-30px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+label {
+    font-size: 14px;
+    color: #ddd; /* Lighter gray for labels */
+    margin-bottom: 5px;
+    display: block;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #444;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #333;
+    color: #fff;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus {
+    border-color: #81d4fa;  /* Updated color */
+    outline: none;
+    transform: scale(1.05); /* Slight zoom effect on focus */
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #81d4fa; /* Updated button color */
+    color: rgb(3, 3, 3);
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #64b5f6; /* Hover color slightly darker */
+    transform: translateY(-3px); /* Button hover animation */
+}
+
+.message {
+    margin-top: 15px;
+    color: #ccc;
+}
+
+.message a {
+    color: #81d4fa; /* Updated color */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.message a:hover {
+    color: #64b5f6; /* Hover color slightly darker */
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .signup-container {
+        padding: 20px;
+        width: 90%;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    select {
+        padding: 10px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}

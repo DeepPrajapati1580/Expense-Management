@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense List</title>
+    <style>
+        /* Dark Theme Styling */
+        body {
+            background-color: #000;
+            color: #add8e6;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #121212;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: #add8e6;
+            text-decoration: none;
+            padding: 14px 20px;
+            font-size: 18px;
+            display: inline-block;
+        }
+
+        .navbar a:hover {
+            color: #87ceeb;
+        }
+
+        /* Button Styling */
+        .add-btn, .update-btn, .delete-btn {
+            transition: all 0.3s ease-in-out;
+            transform: scale(1);
+        }
+
+        .add-btn:hover, .update-btn:hover, .delete-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .add-btn:active, .update-btn:active, .delete-btn:active {
+            transform: scale(0.95);
+        }
+
+        .add-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px auto;
+            display: block;
+            width: 150px;
+            text-align: center;
+        }
+
+        .add-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Table Wrapper for Responsiveness */
+        .table-container {
+            width: 90%;
+            margin: auto;
+            overflow-x: auto; /* Enables horizontal scrolling */
+            background-color: #222;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(173, 216, 230, 0.5);
+        }
+
+        /* Table Fade-in Animation */
+        .expense-table {
+            width: 100%;
+            min-width: 600px;
+            border-collapse: collapse;
+            color: #add8e6;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Row Hover Animation */
+        .expense-table tr {
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .expense-table th, .expense-table td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #444;
+        }
+
+        .expense-table th {
+            background-color: #111;
+        }
+
+        .expense-table tr:hover {
+            background-color: #333;
+        }
+
+        /* Button Effects */
+        .update-btn, .delete-btn {
+            padding: 8px 12px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .update-btn {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .update-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .delete-btn {
+            background-color: #ff4d4d;
+            color: white;
+        }
+
+        .delete-btn:hover {
+            background-color: #cc0000;
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 600px) {
+            .table-container {
+                padding: 5px;
+            }
+
+            .expense-table th, .expense-table td {
+                padding: 8px;
+                font-size: 12px;
+            }
+
+            .update-btn, .delete-btn {
+                font-size: 12px;
+                padding: 5px 8px;
+            }
+
+            .add-btn {
+                width: 100px;
+                font-size: 14px;
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="/home">Home</a>
+        <a href="/e2">Expense</a>
+        <a href="/search">Search</a>
+        <a href="/add">Add Expense</a>
+        <a href="/history">History</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <a href="/add"><button class="add-btn">Add Expense</button></a>
+
+    <div class="table-container">
+        {% if expenses %}
+            <table class="expense-table">
+                <thead>
+                    <tr>
+                        <th>Sr. No</th>
+                        <th>Item Name</th>
+                        <th>Item Price</th>
+                        <th>Day</th>
+                        <th>Month</th>
+                        <th>Year</th>
+                        <th>Operations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for expense in expenses %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ expense.item }}</td>
+                        <td>{{ expense.price }} Rs.</td>
+                        <td>{{ expense.day }}</td>
+                        <td>{{ expense.month }}</td>
+                        <td>{{ expense.year }}</td>
+                        <td>
+                            <a href="{% url 'update_expense' expense.id %}">
+                                <button class="update-btn">Update</button>
+                            </a>
+                            <a href="{% url 'delete_expense' expense.id %}">
+                                <button class="delete-btn">Delete</button>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p style="text-align: center; margin-top: 20px; color: white;">No expenses found.</p>
+        {% endif %}
+    </div>
+
+</body>
+</html>
